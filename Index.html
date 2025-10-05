@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flarglepox Sensi Login + Page</title>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+
+<style>
+body { font-family: Arial, sans-serif; background:#f0f0f0; margin:0; padding:20px; text-align:center; }
+h1, h2 { margin:10px 0; }
+
+/* Login section */
+#login-page { display:block; background:#111; color:#fff; padding:50px; min-height:100vh; }
+.btn { display:block; margin:15px auto; width:250px; padding:12px; border:none; border-radius:6px; font-size:16px; cursor:pointer; font-weight:bold; }
+.google { background:#4285F4; color:#fff; }
+.facebook { background:#1877F2; color:#fff; }
+.google:hover { background:#357ae8; }
+.facebook:hover { background:#145dbf; }
+
+/* Sensi section */
+#sensi-page { display:none; }
+.container { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+.card { background:#fff; padding:20px; border-radius:10px; width:calc(50% - 20px); max-width:400px; box-shadow:0 4px 10px rgba(0,0,0,0.08); text-align:left; position:relative; }
+.card img { width:100%; border-radius:8px; }
+.buy-btn { display:inline-block; padding:10px 20px; margin:5px 0; border-radius:5px; text-decoration:none; color:#fff; background:#000; font-weight:bold; }
+.buy-btn:hover { background:#333; }
+.show-btn { display:inline-block; padding:10px 20px; margin:20px 0; border-radius:5px; text-decoration:none; color:#fff; background:#000; font-weight:bold; cursor:pointer; }
+.show-btn:hover { background:#333; }
+.scroll-images { margin-top:20px; display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+.scroll-images a { width:calc(50% - 20px); max-width:400px; display:none; }
+.scroll-images img { width:100%; border-radius:8px; }
+.price-label { display:block; margin-bottom:5px; font-weight:bold; font-size:16px; }
+.click-text { font-size:20px; font-weight:bold; margin-bottom:10px; }
+.demo-link { display:block; text-decoration:none; color:#0b63d6; font-weight:bold; margin-bottom:10px; }
+.demo-link:hover { text-decoration:underline; }
+@media(max-width:600px) { .card, .scroll-images a { width:100%; } }
+</style>
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="login-page">
+  <h1>Login to Flarglepox Sensi</h1>
+  <button class="btn google" id="googleLogin">Login with Google</button>
+  <button class="btn facebook" id="facebookLogin">Login with Facebook</button>
+</div>
+
+<!-- SENSI PAGE -->
+<div id="sensi-page">
+  <h1>Flarglepox Sensi Pack</h1>
+
+  <div class="container">
+    <div class="card">
+      <a href="https://youtu.be/BnRPEwAlUx8?si=9DvxAvM54PWM7c1J" target="_blank" class="demo-link">Demo Video</a>
+      <img src="https://i.supaimg.com/d8acea91-666f-4842-99fc-c0a47506420a.png" alt="Android Sensi">
+      <h2>Android Premium Pack</h2>
+      <a href="https://flarglepoxsen.github.io/Kshdsksks/" target="_blank" class="buy-btn">Buy it now</a>
+    </div>
+
+    <div class="card">
+      <img src="https://i.supaimg.com/b9844db6-1ec6-46c5-9c62-0990fd69e052.png" alt="iOS Sensi">
+      <h2>iOS Premium Pack</h2>
+      <a href="https://flarglepoxsen.github.io/Kshdsksks/" target="_blank" class="buy-btn">Buy it now</a>
+    </div>
+  </div>
+
+  <div class="click-text">Click Here</div>
+  <button class="show-btn" onclick="showImages()">Ump and Shotgun Sensi <span class="price-label">₹299 | ₹499</span></button>
+
+  <div class="scroll-images">
+    <a href="https://sayyedmurtuza908-dot.github.io/Sensilastpage/" target="_blank"><img src="https://i.supaimg.com/afb2f77f-3fdc-4bae-b8b0-ae945c97be87.png" alt="Scroll 1"></a>
+    <a href="https://sayyedmurtuza908-dot.github.io/Sensilastpage/" target="_blank"><img src="https://i.supaimg.com/8b7269d4-733c-4f19-993b-a9a1815fa755.png" alt="Scroll 2"></a>
+  </div>
+</div>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    appId: "YOUR_APP_ID"
+  };
+  const app = firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  function showSensi() {
+    document.getElementById("login-page").style.display = "none";
+    document.getElementById("sensi-page").style.display = "block";
+  }
+
+  document.getElementById("googleLogin").addEventListener("click", () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+      .then(showSensi)
+      .catch(error => alert(error.message));
+  });
+
+  document.getElementById("facebookLogin").addEventListener("click", () => {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    auth.signInWithPopup(provider)
+      .then(showSensi)
+      .catch(error => alert(error.message));
+  });
+
+  function showImages() {
+    document.querySelectorAll('.scroll-images a').forEach(img => img.style.display = 'block');
+  }
+</script>
+
+</body>
+  </html>
