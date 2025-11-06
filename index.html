@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eliminate Sound Demo 💥</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(#87CEEB, #B0E0E6);
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+button {
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-size: 1.2rem;
+  margin: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+<body>
+
+<h1>💥 Eliminate Sound Test</h1>
+
+<!-- 🎵 Eliminate sound -->
+<audio id="eliminateSound" src="eliminate.mp3" preload="auto"></audio>
+
+<!-- 🔘 Button to trigger eliminate sound -->
+<button id="elimBtn">Play Eliminate Sound</button>
+
+<script>
+const elim = document.getElementById("eliminateSound");
+document.getElementById("elimBtn").addEventListener("click", () => {
+  elim.currentTime = 0;
+  elim.volume = 1.0;
+  elim.play().catch(err => console.log("Autoplay blocked:", err));
+});
+</script>
+
+</body>
+</html>
